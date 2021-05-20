@@ -1,0 +1,21 @@
+post:
+  description: Register a new model
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "./schemas/add_model_request.yml"
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/message_response.yml"
+    400:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/error_response.yml"

@@ -1,0 +1,15 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Name of the model
+  version:
+    type: string
+    description: Version of the model
+  owner:
+    type: string
+    description: Owner of the model
+required:
+  - name
+  - version
+  - owner

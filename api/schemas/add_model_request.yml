@@ -1,0 +1,65 @@
+type: object
+properties:
+  model_config:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the model
+      version:
+        type: string
+        description: Version of the model
+      type:
+        type: string
+        description: Type of the model
+        enum:
+          - ENCODER
+          - DECODER
+          - SEQ2SEQ
+      description:
+        type: string
+        description: English description of the model
+      inference_properties:
+        type: object
+        description: Inference properties for a model, used to create model deployment
+        properties:
+          entry_script:
+            type: string
+            description: Inference entry python script, relative to the model root directory
+          conda_env:
+            type: string
+            description: Conda environment YAML file
+          docker_image:
+            type: string
+            description: Base docker image to user, must be a full image repository path
+          docker_registry:
+            type: object
+            description: Custom Docker registry to fetch the image from
+            properties:
+              url:
+                type: string
+              username:
+                type: string
+              password:
+                type: string
+            required:
+              - url
+        required:
+          - entry_script
+    required:
+      - name
+      - version
+      - type
+      - inference_properties
+  model_files:
+    type: object
+    items:
+      type: string
+  private_packages:
+    type: array
+    items:
+      type: string
+    description: List of private packages needed by the model, as downloadable URLs
+required:
+  - model_config
+  - model_files

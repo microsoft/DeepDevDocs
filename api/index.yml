@@ -1,0 +1,17 @@
+openapi: "3.0.2"
+info:
+  title: DeepDev
+  version: "private preview"
+servers:
+  - url: https://deepdev-staging.azurewebsites.net
+
+components:
+  securitySchemes:
+    name:
+      type: apiKey
+      name: api_key
+      in: header
+
+paths:
+  /api/add_model:
+    $ref: "./add_model.yml"
