@@ -1,7 +1,5 @@
 ---
-title: Register new pretrained model
-sidebar_position: 1
-keywords:
+title: Register New Pretrained Model
 description: Register new pretrained model
 ---
 
@@ -19,11 +17,23 @@ Before you register the model you will need to prepare the following files and h
 
 1. Model and related files (e.g. tokenizer file, configuration file, etc.)
 
-2. Python inference script. You also need at least one fo the following environment definitions. For additional information on how to author inference scripts, see [author_inference_script.md](./author_inference_script.md)
+2. Python inference script. You also need at least one fo the following environment definitions to setup the dependencies. For additional information on how to author inference scripts, see [author_inference_script.md](./author_inference_script.md)
 
-   2.1. (Optional) Inference conda environment YAML file.
+   2.1. Conda environment YAML file.
 
-   2.2. (Optional) Inference docker base image.
+   2.2. Docker base image.
+
+3. (Optional) If the model can be trained or finetuned, a training script must be provided. You also need at least one fo the following environment definitions to setup the dependencies. For additional information on how to author training scripts, see [author_training_script.md](./author_training_script.md)
+
+   3.1. Conda environment YAML file.
+
+   3.2. Docker base image.
+
+4. (Optional) If model trainined requires data pre-processing, a pre-processing script must be provided. You also need at least one fo the following environment definitions to setup the dependencies. For additional information on how to author pre-processing scripts, see [author_pre_processing_script.md](./author_pre_processing_script.md)
+
+   3.1. Conda environment YAML file.
+
+   3.2. Docker base image.
 
 ## Metadata
 
@@ -38,16 +48,17 @@ To register a model, you will need to provide the following metadata:
 
 ## Request
 
-To register a model, send a POST request to https://platform-services-models.azurewebsites.net/api/add.
+To register a model, send a POST request to `/api/add_models` endpoint.
+
+For full specifications on the request body. Please refer to our OpenAPI schema under the **API** tab.
 
 The request body should be JSON-formatted and must contain 2 parameters: `model_config` and `model_files`.
 
-`model_config` needs to follow the same schema as [ModelProperties](https://athenaplatformdocs.z5.web.core.windows.net/platform/services/models/model_properties.html#ModelProperties), where fields without default values are required.
-All file references such as inference entry script or conda YAML file need to point to the local file names (i.e. the keys in `model_files`).
+All file references in `model_config`, such as inference entry script or conda YAML file, need to point to the local file names (i.e. the keys in `model_files`).
 
 `model_files` contains all the files necessary for the model, including the inference files and training files. It is an object where the keys are the target filenames and the valuse are the source URL in the storage account.
 During registration, the files will be copied to a private storage account under the target name.
-Note that the source URL must be directly accessible. Therefore, for private storage accounts, a SAS token must be included for authentication.
+Note that the URLs in `model_files` must be directly accessible, without additional authentication. Therefore, for private Azure Storage accounts, a SAS token with READ permission must be included for authorization.
 
 ## Examples
 
