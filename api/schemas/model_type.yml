@@ -1,0 +1,6 @@
+type: string
+description: Architecture of the model
+enum:
+  - ENCODER
+  - DECODER
+  - SEQ2SEQ

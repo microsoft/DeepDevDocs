@@ -1,14 +1,28 @@
 type: object
 properties:
+  name:
+    type: string
+    description: Name of the model to clone from
+  version:
+    type: string
+    description: Version of the model to clone from
+  owner:
+    type: string
+    description: Owner of the model to clone from
+  version_new:
+    type: string
+    description: Version of the new model to create
+  model_files:
+    type: object
+    description: New files to add to the model
+  ignore_files:
+    type: array
+    description: List of files from the original model to ignore
+    items:
+      type: string
   model_config:
     type: object
     properties:
-      name:
-        type: string
-        description: Name of the model
-      version:
-        type: string
-        description: Version of the model
       type:
         $ref: ./model_type.yml
       description:
@@ -16,21 +30,18 @@ properties:
         description: English description of the model
       inference_properties:
         type: object
-        description: Inference properties for a model, used to create model deployment
         properties:
           entry_script:
             type: string
-            description: Inference entry python script, relative to the model root directory
+            description: Inference entry script
           conda_env:
             type: string
-            description: Conda environment YAML file
+            description: Inference Conda environment YAML file
           docker_image:
             type: string
-            description: Base docker image to user, must be a full image repository path
+            description: Docker base image to use. If the image is from a private registry, registry details and credentails can be added in the docker_registry field
           docker_registry:
             $ref: ./docker_registry.yml
-        required:
-          - entry_script
       training_properties:
         type: object
         properties:
@@ -48,22 +59,8 @@ properties:
             description: Docker base image to use. If the image is from a private registry, registry details and credentails can be added in the docker_registry field
           docker_registry:
             $ref: ./docker_registry.yml
-        required:
-          - entry_script
-    required:
-      - name
-      - version
-      - type
-      - inference_properties
-  model_files:
-    type: object
-    items:
-      type: string
-  private_packages:
-    type: array
-    items:
-      type: string
-    description: List of private packages needed by the model, as downloadable URLs from an Azure storage account
 required:
-  - model_config
-  - model_files
+  - name
+  - version
+  - owner
+  - version_new

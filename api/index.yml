@@ -1,9 +1,10 @@
-openapi: "3.0.2"
+openapi: 3.0.2
 info:
   title: DeepDev
-  version: "private preview"
+  version: Preview
 servers:
   - url: https://deepdev-staging.azurewebsites.net
+  - url: http://localhost:7071
 
 components:
   securitySchemes:
@@ -13,5 +14,282 @@ components:
       in: header
 
 paths:
-  /api/add_model:
-    $ref: "./add_model.yml"
+  /api/models:
+    get:
+      description: List all models available publicly on DeepDev
+      parameters:
+        - in: query
+          name: name
+          description: Filter all models with the given name
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: version
+          description: Filter all models with the given version
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: owner
+          description: Filter all models with the given owner name
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: organization
+          description: Filter all models with the given organization
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: trainable
+          description: Filter all models that can be trained
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: type
+          description: Filter all models of the given architecture
+          required: false
+          schema:
+            type: string
+            enum:
+              - ENCODER
+              - DECODER
+              - SEQ2SEQ
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/list_models_response.yml
+  /api/model/{name}/{version}/{owner}:
+    get:
+      description: Get the properties of a model
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: owner
+          description: Owner of the model
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/get_model_response.yml
+  /api/model/{name}/{version}:
+    delete:
+      description: Delete all resources associated with the model, including deployments
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+  /api/deployment/{name}/{version}:
+    delete:
+      description: Delete an existing mode deployment
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model that is deployed
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model that is deployed
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+    put:
+      description: Create a deployment for a model
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to be deployed
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to be deployed
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+
+    get:
+      description: Get the status of a model deployment
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model that is deployed
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model that is deployed
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+
+  /api/model:
+    put:
+      description: Register a model on the DeepDev
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/add_model_request.yml
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+
+  /api/model/{name}/{version}/status:
+    get:
+      description: Get the status for a model registration
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/add_model_status_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+
+  /api/model/clone:
+    put:
+      description: Clone a model from an existing model
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/clone_model_from_request.yml
+      responses:
+        200:
+          description: OK

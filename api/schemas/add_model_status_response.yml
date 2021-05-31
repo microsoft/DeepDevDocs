@@ -1,0 +1,25 @@
+type: object
+properties:
+  start_timestamp:
+    type: string
+    description: Timestamp when the registration started
+  start_time:
+    type: string
+    description: Time when the registration started, in human-readable format, in UTC
+  last_updated_timestamp:
+    type: string
+    description: Timestamp when the registration status was last updated
+  last_updated_time:
+    type: string
+    description: Time when the registration status was last updated, in human-readable format, in UTC
+  state:
+    type: string
+    description: State of the model registration
+    enum:
+      - InProgress
+      - Finished
+      - Failed
+  message:
+    type: string
+    description: Additional Engilsh description of the last known state
+    

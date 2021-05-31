@@ -1,0 +1,7 @@
+type: string
+description: Current state of the deployment
+enum:
+  - Queued
+  - Creating
+  - Ready
+  - Failed

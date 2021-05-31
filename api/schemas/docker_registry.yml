@@ -1,0 +1,15 @@
+type: object
+description: Custom Docker registry to fetch the Docker image from
+properties:
+  url:
+    type: string  
+    description: Docker registry server URL
+  username:
+    type: string
+    description: Docker registry username
+  password:
+    type: string
+    description: Docker registry password
+required:
+  - url
+  
