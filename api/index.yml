@@ -4,7 +4,6 @@ info:
   version: Preview
 servers:
   - url: https://deepdev-staging.azurewebsites.net
-  - url: http://localhost:7071
 
 components:
   securitySchemes:
@@ -96,6 +95,40 @@ paths:
               schema:
                 $ref: ./schemas/get_model_response.yml
   /api/model/{name}/{version}:
+    put:
+      description: Register a model on the DeepDev
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to register
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to register
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/add_model_request.yml
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        409:
+          description: Already registered
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
     delete:
       description: Delete all resources associated with the model, including deployments
       responses:
@@ -186,6 +219,12 @@ paths:
             application/json:
               schema:
                 $ref: ./schemas/error_response.yml
+        409:
+          description: Already deployed
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
 
     get:
       description: Get the status of a model deployment
@@ -217,29 +256,6 @@ paths:
                 $ref: ./schemas/error_response.yml
         404:
           description: Not found
-          content:
-            application/json:
-              schema:
-                $ref: ./schemas/error_response.yml
-
-  /api/model:
-    put:
-      description: Register a model on the DeepDev
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: ./schemas/add_model_request.yml
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./schemas/message_response.yml
-        400:
-          description: Error
           content:
             application/json:
               schema:
@@ -281,9 +297,22 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
 
-  /api/model/clone:
+  /api/model/clone/{name}/{version}:
     put:
       description: Clone a model from an existing model
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to register
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to register
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -293,3 +322,25 @@ paths:
       responses:
         200:
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        409:
+          description: Already deployed
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
