@@ -297,7 +297,7 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
 
-  /api/model/clone/{name}/{version}:
+  /api/model/clone/{name}/{version}/{owner}:
     put:
       description: Clone a model from an existing model
       parameters:

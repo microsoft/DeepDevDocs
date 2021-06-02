@@ -1,14 +1,5 @@
 type: object
 properties:
-  name:
-    type: string
-    description: Name of the model to clone from
-  version:
-    type: string
-    description: Version of the model to clone from
-  owner:
-    type: string
-    description: Owner of the model to clone from
   version_new:
     type: string
     description: Version of the new model to create
@@ -60,7 +51,4 @@ properties:
           docker_registry:
             $ref: ./docker_registry.yml
 required:
-  - name
-  - version
-  - owner
   - version_new

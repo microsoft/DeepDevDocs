@@ -3,12 +3,6 @@ properties:
   model_config:
     type: object
     properties:
-      name:
-        type: string
-        description: Name of the model
-      version:
-        type: string
-        description: Version of the model
       type:
         $ref: ./model_type.yml
       description:
@@ -51,8 +45,6 @@ properties:
         required:
           - entry_script
     required:
-      - name
-      - version
       - type
       - inference_properties
   model_files:
