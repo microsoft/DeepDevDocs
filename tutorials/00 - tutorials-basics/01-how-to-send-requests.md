@@ -1,3 +1,3 @@
 ---
-title: How To Send Requests To DeepDev
+title: Sending Requests To DeepDev
 ---

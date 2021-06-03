@@ -1,3 +1,3 @@
 ---
-title: Rate Limits
+title: Request Rate Limits
 ---

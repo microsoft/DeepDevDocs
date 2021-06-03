@@ -3,7 +3,7 @@ title: Register New Pretrained Model
 description: Register new pretrained model
 ---
 
-# Register new pretrained model
+# How to register
 
 Registering a new model can be done through the `add_model` endpoint.
 

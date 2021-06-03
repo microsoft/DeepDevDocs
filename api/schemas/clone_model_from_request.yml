@@ -1,8 +1,11 @@
 type: object
 properties:
-  version_new:
+  parent_version:
     type: string
-    description: Version of the new model to create
+    description: Version of the parent model to clone from
+  parent_owner:
+    type: string
+    description: Owner of the parent model to clone from
   model_files:
     type: object
     description: New files to add to the model
@@ -51,4 +54,5 @@ properties:
           docker_registry:
             $ref: ./docker_registry.yml
 required:
-  - version_new
+  - parent_version
+  - parent_owner

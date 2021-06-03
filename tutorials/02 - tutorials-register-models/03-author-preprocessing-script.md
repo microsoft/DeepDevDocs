@@ -1,5 +1,5 @@
 ---
-title: How To Author Data Pre-processing Script
+title: Data Pre-Processing Script
 ---
 
 # How to author data pre-processing script

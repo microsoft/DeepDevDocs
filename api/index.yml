@@ -11,10 +11,18 @@ components:
       type: apiKey
       name: api_key
       in: header
-
+tags:
+  - name: Model
+    description: Model management APIs
+  - name: Deployment
+    description: Model deployment management APIs
+  - name: Training
+    description: Model training management APIs
 paths:
   /api/models:
     get:
+      tags:
+        - Model
       description: List all models available publicly on DeepDev
       parameters:
         - in: query
@@ -67,6 +75,8 @@ paths:
                 $ref: ./schemas/list_models_response.yml
   /api/model/{name}/{version}/{owner}:
     get:
+      tags:
+        - Model
       description: Get the properties of a model
       parameters:
         - in: path
@@ -96,6 +106,8 @@ paths:
                 $ref: ./schemas/get_model_response.yml
   /api/model/{name}/{version}:
     put:
+      tags:
+        - Model
       description: Register a model on the DeepDev
       parameters:
         - in: path
@@ -130,6 +142,8 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
     delete:
+      tags:
+        - Model
       description: Delete all resources associated with the model, including deployments
       responses:
         200:
@@ -152,6 +166,8 @@ paths:
                 $ref: ./schemas/error_response.yml
   /api/deployment/{name}/{version}:
     delete:
+      tags:
+        - Deployment
       description: Delete an existing mode deployment
       parameters:
         - in: path
@@ -186,6 +202,8 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
     put:
+      tags:
+        - Deployment
       description: Create a deployment for a model
       parameters:
         - in: path
@@ -227,6 +245,8 @@ paths:
                 $ref: ./schemas/error_response.yml
 
     get:
+      tags:
+        - Deployment
       description: Get the status of a model deployment
       parameters:
         - in: path
@@ -263,6 +283,8 @@ paths:
 
   /api/model/{name}/{version}/status:
     get:
+      tags:
+        - Model
       description: Get the status for a model registration
       parameters:
         - in: path
@@ -299,6 +321,8 @@ paths:
 
   /api/model/clone/{name}/{version}/{owner}:
     put:
+      tags:
+        - Model
       description: Clone a model from an existing model
       parameters:
         - in: path
