@@ -21,6 +21,7 @@ tags:
 paths:
   /api/models:
     get:
+      summary: List models
       tags:
         - Model
       description: List all models available publicly on DeepDev
@@ -75,6 +76,7 @@ paths:
                 $ref: ./schemas/list_models_response.yml
   /api/model/{name}/{version}/{owner}:
     get:
+      summary: Get model
       tags:
         - Model
       description: Get the properties of a model
@@ -106,6 +108,7 @@ paths:
                 $ref: ./schemas/get_model_response.yml
   /api/model/{name}/{version}:
     put:
+      summary: Register model
       tags:
         - Model
       description: Register a model on the DeepDev
@@ -142,6 +145,7 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
     delete:
+      summary: Delete model
       tags:
         - Model
       description: Delete all resources associated with the model, including deployments
@@ -166,6 +170,7 @@ paths:
                 $ref: ./schemas/error_response.yml
   /api/deployment/{name}/{version}:
     delete:
+      summary: Delete deployment
       tags:
         - Deployment
       description: Delete an existing mode deployment
@@ -202,6 +207,7 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
     put:
+      summary: Create deployment
       tags:
         - Deployment
       description: Create a deployment for a model
@@ -245,6 +251,7 @@ paths:
                 $ref: ./schemas/error_response.yml
 
     get:
+      summary: Get deployment
       tags:
         - Deployment
       description: Get the status of a model deployment
@@ -261,6 +268,12 @@ paths:
           required: true
           schema:
             type: string
+        - in: query
+          name: init_logs
+          description: Whether to return service initialization logs
+          required: false
+          schema:
+            type: boolean
       responses:
         200:
           description: OK
@@ -283,6 +296,7 @@ paths:
 
   /api/model/{name}/{version}/status:
     get:
+      summary: Get registration status
       tags:
         - Model
       description: Get the status for a model registration
@@ -321,6 +335,7 @@ paths:
 
   /api/model/clone/{name}/{version}/{owner}:
     put:
+      summary: Clone model
       tags:
         - Model
       description: Clone a model from an existing model
