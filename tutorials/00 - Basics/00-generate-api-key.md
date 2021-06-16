@@ -2,7 +2,7 @@
 title: Generate API Key
 ---
 
-## Generate API Key
+# How to generate API key
 
 ## Regenerate API Key
 

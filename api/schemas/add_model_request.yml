@@ -3,12 +3,6 @@ properties:
   model_config:
     type: object
     properties:
-      name:
-        type: string
-        description: Name of the model
-      version:
-        type: string
-        description: Version of the model
       type:
         $ref: ./model_type.yml
       description:
@@ -51,14 +45,74 @@ properties:
         required:
           - entry_script
     required:
-      - name
-      - version
       - type
       - inference_properties
   model_files:
     type: object
     items:
       type: string
+  model_metainfo:
+    type: object
+    properties:
+      input_types:
+        type: array
+        items:
+          type: string
+          enum:
+            - SOURCE_CODE
+            - NATURAL_LANGUAGE
+            - CLASS_LABEL
+            - OTHER
+        description: List of all types of data that the model can take as input
+      input_languages:
+        type: array
+        item:
+          type: array
+          items:
+            type: string
+          description: List of all languages that the model can take as input
+      input_description:
+        type: string
+        description: Description of model input
+      output_types:
+        type: array
+        items:
+          type: string
+          enum:
+            - SOURCE_CODE
+            - NATURAL_LANGUAGE
+            - CLASS_LABEL
+            - OTHER
+        description: List of all types of data that the model can output
+      output_languages:
+        type: array
+        item:
+          type: array
+          items:
+            type: string
+          description: List of all languages that the model can output
+      output_description:
+        type: string
+        description: Description of model output
+      num_params:
+        type: number
+        description: Number of parameters in the model
+      home_page_file:
+        type: string
+        description: Model home page file in markdown, same name as provided in the model_files section
+      images:
+        type: array
+        items:
+          type: string
+        description: List of image file name, provided through the model_files section
+    required:
+      - input_types
+      - input_languages
+      - input_description
+      - output_types
+      - output_languages
+      - output_description
+      - num_params
   private_packages:
     type: array
     items:

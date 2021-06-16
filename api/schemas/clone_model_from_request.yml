@@ -1,17 +1,11 @@
 type: object
 properties:
-  name:
+  parent_version:
     type: string
-    description: Name of the model to clone from
-  version:
+    description: Version of the parent model to clone from
+  parent_owner:
     type: string
-    description: Version of the model to clone from
-  owner:
-    type: string
-    description: Owner of the model to clone from
-  version_new:
-    type: string
-    description: Version of the new model to create
+    description: Owner of the parent model to clone from
   model_files:
     type: object
     description: New files to add to the model
@@ -59,8 +53,65 @@ properties:
             description: Docker base image to use. If the image is from a private registry, registry details and credentails can be added in the docker_registry field
           docker_registry:
             $ref: ./docker_registry.yml
+  model_metainfo:
+    type: object
+    properties:
+      input_types:
+        type: array
+        items:
+          type: string
+          enum:
+            - SOURCE_CODE
+            - NATURAL_LANGUAGE
+            - CLASS_LABEL
+            - OTHER
+        description: List of all types of data that the model can take as input
+      input_languages:
+        type: array
+        item:
+          type: array
+          items:
+            type: string
+          description: List of all languages that the model can take as input
+      input_description:
+        type: string
+        description: Description of model input
+      output_types:
+        type: array
+        items:
+          type: string
+          enum:
+            - SOURCE_CODE
+            - NATURAL_LANGUAGE
+            - CLASS_LABEL
+            - OTHER
+        description: List of all types of data that the model can output
+      output_languages:
+        type: array
+        item:
+          type: array
+          items:
+            type: string
+          description: List of all languages that the model can output
+      output_description:
+        type: string
+        description: Description of model output
+      num_params:
+        type: number
+        description: Number of parameters in the model
+      home_page_file:
+        type: string
+        description: Model home page file in markdown, same name as provided in the model_files section
+      images:
+        type: array
+        items:
+          type: string
+        description: List of image file name, provided through the model_files section
+  private_packages:
+    type: array
+    items:
+      type: string
+    description: List of private packages needed by the model, as downloadable URLs from an Azure storage account
 required:
-  - name
-  - version
-  - owner
-  - version_new
+  - parent_version
+  - parent_owner
