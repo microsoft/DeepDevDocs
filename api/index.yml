@@ -3,14 +3,13 @@ info:
   title: DeepDev
   version: Preview
 servers:
-  - url: https://deepdev-staging.azurewebsites.net
+  - url: https://deepdev-api.microsoft.com/api/v1.0
 
 components:
   securitySchemes:
-    name:
-      type: apiKey
-      name: api_key
-      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
 tags:
   - name: Model
     description: Model management APIs
@@ -19,7 +18,40 @@ tags:
   - name: Training
     description: Model training management APIs
 paths:
-  /api/models:
+  /model/{name}/{version}/{owner}/homepage:
+    get:
+      summary: Get model page
+      tags:
+        - Model
+      description: Get the homepage markdown file for a model
+      parameters:
+        - in: query
+          name: name
+          description: Filter all models with the given name
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: version
+          description: Filter all models with the given version
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: owner
+          description: Filter all models with the given owner name
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            text/markdown:
+              schema:
+                type: string
+
+  /models:
     get:
       summary: List models
       tags:
@@ -74,7 +106,8 @@ paths:
             application/json:
               schema:
                 $ref: ./schemas/list_models_response.yml
-  /api/model/{name}/{version}/{owner}:
+
+  /model/{name}/{version}/{owner}:
     get:
       summary: Get model
       tags:
@@ -106,7 +139,8 @@ paths:
             application/json:
               schema:
                 $ref: ./schemas/get_model_response.yml
-  /api/model/{name}/{version}:
+
+  /model/{name}/{version}:
     put:
       summary: Register model
       tags:
@@ -168,7 +202,8 @@ paths:
             application/json:
               schema:
                 $ref: ./schemas/error_response.yml
-  /api/deployment/{name}/{version}:
+
+  /deployment/{name}/{version}:
     delete:
       summary: Delete deployment
       tags:
@@ -294,7 +329,7 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
 
-  /api/model/{name}/{version}/status:
+  /model/{name}/{version}/status:
     get:
       summary: Get registration status
       tags:
@@ -333,7 +368,7 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
 
-  /api/model/clone/{name}/{version}/{owner}:
+  /model/clone/{name}/{version}/{owner}:
     put:
       summary: Clone model
       tags:
@@ -383,3 +418,6 @@ paths:
             application/json:
               schema:
                 $ref: ./schemas/error_response.yml
+
+security:
+  - bearerAuth: []
