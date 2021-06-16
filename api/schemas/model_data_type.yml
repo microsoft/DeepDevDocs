@@ -1,0 +1,8 @@
+type: string
+description: Types of model data
+enum:
+  - SOURCE_CODE
+  - NATURAL_LANGUAGE
+  - CLASS_LABEL
+  - OTHER
+example: SOURCE_CODE

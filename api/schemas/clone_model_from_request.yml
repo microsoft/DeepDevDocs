@@ -59,16 +59,11 @@ properties:
       input_types:
         type: array
         items:
-          type: string
-          enum:
-            - SOURCE_CODE
-            - NATURAL_LANGUAGE
-            - CLASS_LABEL
-            - OTHER
+          $ref: ./model_data_type.yml
         description: List of all types of data that the model can take as input
       input_languages:
         type: array
-        item:
+        items:
           type: array
           items:
             type: string
@@ -79,16 +74,11 @@ properties:
       output_types:
         type: array
         items:
-          type: string
-          enum:
-            - SOURCE_CODE
-            - NATURAL_LANGUAGE
-            - CLASS_LABEL
-            - OTHER
+          $ref: ./model_data_type.yml
         description: List of all types of data that the model can output
       output_languages:
         type: array
-        item:
+        items:
           type: array
           items:
             type: string

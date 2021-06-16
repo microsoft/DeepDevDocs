@@ -8,6 +8,7 @@ properties:
       description:
         type: string
         description: English description of the model
+        example: Code generation decoder model trained on Python, C#, JavaScript and TypeScript dataset.
       inference_properties:
         type: object
         description: Inference properties for a model, used to create model deployment
@@ -15,12 +16,15 @@ properties:
           entry_script:
             type: string
             description: Inference entry python script, relative to the model root directory
+            example: inference.py
           conda_env:
             type: string
             description: Conda environment YAML file
+            example: inference.yml
           docker_image:
             type: string
             description: Base docker image to user, must be a full image repository path
+            example: azureml/openmpi3.1.2-cuda10.1-cudnn7-ubuntu18.04
           docker_registry:
             $ref: ./docker_registry.yml
         required:
@@ -31,15 +35,21 @@ properties:
           entry_script:
             type: string
             description: Training entry script
+            example: train.py
           args:
             type: object
             description: Name of arguments and default values to be passed to the entry script
+            example:
+              "--learning_rate": 0.001
+              "-v": ""
           conda_env:
             type: string
             description: Training Conda environment YAML file
+            example: "train.yml"
           docker_image:
             type: string
             description: Docker base image to use. If the image is from a private registry, registry details and credentails can be added in the docker_registry field
+            example: azureml/openmpi3.1.2-cuda10.1-cudnn7-ubuntu18.04
           docker_registry:
             $ref: ./docker_registry.yml
         required:
@@ -51,59 +61,63 @@ properties:
     type: object
     items:
       type: string
+    example:
+      "inference.py": "https://storageaccount.blob.core.windows.net/gptc/my_inference_script.py?<sas_key>"
+      "inference.yml": "https://storageaccount.blob.core.windows.net/gptc/environment.yml?<sas_key>"
+      "train.py": "https://storageaccount.blob.core.windows.net/gptc/run_training.py?<sas_key>"
+      "train.yml": "https://storageaccount.blob.core.windows.net/gptc/training_env.yml?<sas_key>"
+      "model.pt": "https://storageaccount.blob.core.windows.net/gptc/checkpoint.pt?<sas_key>"
+      "vocab.model": "https://storageaccount.blob.core.windows.net/gptc/vocabulary.file?<sas_key>"
   model_metainfo:
     type: object
     properties:
       input_types:
         type: array
         items:
-          type: string
-          enum:
-            - SOURCE_CODE
-            - NATURAL_LANGUAGE
-            - CLASS_LABEL
-            - OTHER
+          $ref: ./model_data_type.yml
         description: List of all types of data that the model can take as input
       input_languages:
         type: array
-        item:
+        items:
           type: array
           items:
             type: string
           description: List of all languages that the model can take as input
+          example: CSHARP
       input_description:
         type: string
         description: Description of model input
+        example: Code context before the generation point
       output_types:
         type: array
         items:
-          type: string
-          enum:
-            - SOURCE_CODE
-            - NATURAL_LANGUAGE
-            - CLASS_LABEL
-            - OTHER
+          $ref: ./model_data_type.yml
         description: List of all types of data that the model can output
       output_languages:
         type: array
-        item:
+        items:
           type: array
           items:
             type: string
           description: List of all languages that the model can output
+          example: CSHARP
       output_description:
         type: string
         description: Description of model output
+        example: Generated code
       num_params:
         type: number
         description: Number of parameters in the model
+        example: 50000000
       home_page_file:
         type: string
         description: Model home page file in markdown, same name as provided in the model_files section
+        example: index.md
       images:
         type: array
         items:
           type: string
+          example: image1.png
         description: List of image file name, provided through the model_files section
     required:
       - input_types
@@ -117,6 +131,7 @@ properties:
     type: array
     items:
       type: string
+      example: https://storageaccount.blob.core.windows.net/gptc/private_package.whl?<sas_key>
     description: List of private packages needed by the model, as downloadable URLs from an Azure storage account
 required:
   - model_config

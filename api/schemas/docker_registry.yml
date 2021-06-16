@@ -2,14 +2,16 @@ type: object
 description: Custom Docker registry to fetch the Docker image from
 properties:
   url:
-    type: string  
+    type: string
     description: Docker registry server URL
+    example: mcr.microsoft.com
   username:
     type: string
     description: Docker registry username
+    example: foo
   password:
     type: string
     description: Docker registry password
+    password: foo's strong password 123
 required:
   - url
-  
