@@ -3,7 +3,7 @@ info:
   title: DeepDev
   version: Preview
 servers:
-  - url: https://deepdev-api.microsoft.com/api/v1.0
+  - url: https://deepdev-frontdoor.azurewebsites.net/api/v1.0
 
 components:
   securitySchemes:
