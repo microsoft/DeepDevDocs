@@ -18,12 +18,12 @@ tags:
   - name: Training
     description: Model training management APIs
 paths:
-  /model/{name}/{version}/{owner}/homepage:
+  /model/{name}/{version}/{owner}/index:
     get:
       summary: Get model page
       tags:
         - Model
-      description: Get the homepage markdown file for a model
+      description: Get the index markdown file for a model
       parameters:
         - in: query
           name: name

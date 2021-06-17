@@ -89,9 +89,9 @@ properties:
       num_params:
         type: number
         description: Number of parameters in the model
-      home_page_file:
+      index_page_file:
         type: string
-        description: Model home page file in markdown, same name as provided in the model_files section
+        description: Model index page file in markdown, same name as provided in the model_files section
       images:
         type: array
         items:
