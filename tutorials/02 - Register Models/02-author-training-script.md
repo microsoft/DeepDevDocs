@@ -1,5 +1,5 @@
 ---
-title: Model Training Script
+title: Model training script
 ---
 
 # How to author model training script

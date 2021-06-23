@@ -1,3 +1,3 @@
 ---
-title: Sending Requests To DeepDev
+title: Sending requests
 ---

@@ -13,11 +13,91 @@ components:
 tags:
   - name: Model
     description: Model management APIs
+  - name: Inference
+    description: Model inference APIs
   - name: Deployment
     description: Model deployment management APIs
   - name: Training
     description: Model training management APIs
 paths:
+  /inference/{name}/{version}/{owner}/swagger:
+    get:
+      summary: Model inference swagger JSON schema
+      tags:
+        - Inference
+      description: Get Swagger JSON schema for model inference endpoint
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+                
+  /inference/{name}/{version}/{owner}:
+    get:
+      summary: Model endpoint health
+      tags:
+        - Inference
+      description: Get the health of model endpoint
+      parameters:
+        - in: query
+          name: name
+          description: Name of the model to execute
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: version
+          description: Version of the model to execute
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: owner
+          description: Owner of the model to execute
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+        # TODO
+    post:
+      summary: Execute model inference
+      tags:
+        - Inference
+      description: Execute model inference
+      parameters:
+        - in: query
+          name: name
+          description: Name of the model to execute
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: version
+          description: Version of the model to execute
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: owner
+          description: Owner of the model to execute
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Model output
+        400:
+          description: Model inference error
   /model/{name}/{version}/{owner}/index:
     get:
       summary: Get model page
@@ -50,6 +130,8 @@ paths:
             text/markdown:
               schema:
                 type: string
+        204:
+          description: No Content
 
   /models:
     get:

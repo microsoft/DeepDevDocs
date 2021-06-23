@@ -1,5 +1,5 @@
 ---
-title: Discover Models
+title: Discover models
 description: Discover DeepDev models
 ---
 

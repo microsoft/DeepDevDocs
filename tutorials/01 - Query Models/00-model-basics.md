@@ -1,5 +1,5 @@
 ---
-title: Model Basics
+title: Model basics
 ---
 
 ## What are DeepDev models?

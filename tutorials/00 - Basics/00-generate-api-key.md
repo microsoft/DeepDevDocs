@@ -1,5 +1,5 @@
 ---
-title: Generate API Key
+title: Generate API key
 ---
 
 # How to generate API key

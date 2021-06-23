@@ -1,5 +1,5 @@
 ---
-title: Model Inference Script
+title: Model inference script
 ---
 
 # How to author model inference script
@@ -54,7 +54,7 @@ def run(some_input, extra_arg1='default value'):
     return output
 ```
 
-**NOTE: It is highly recomended to define an OpenAPI schema for your run function by providing examples. For more information on how to define a schema through examples, see [Define Inference Schema](define-inference-schema)**
+> **NOTE: It is highly recomended to define an OpenAPI schema for your run function by providing examples. For more information on how to define a schema through examples, see [Define Inference Schema](/User%20Guides/define-inference-schema)**
 
 ## Testing your script locally
 

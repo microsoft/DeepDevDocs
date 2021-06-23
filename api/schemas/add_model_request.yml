@@ -136,3 +136,4 @@ properties:
 required:
   - model_config
   - model_files
+  - model_metainfo
