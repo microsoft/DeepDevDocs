@@ -39,7 +39,7 @@ paths:
             application/json:
               schema:
                 $ref: ./schemas/error_response.yml
-                
+
   /inference/{name}/{version}/{owner}:
     get:
       summary: Model endpoint health
@@ -93,6 +93,12 @@ paths:
           required: false
           schema:
             type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
       responses:
         200:
           description: Model output
