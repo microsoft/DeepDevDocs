@@ -26,6 +26,25 @@ paths:
       tags:
         - Inference
       description: Get Swagger JSON schema for model inference endpoint
+      parameters:
+        - in: query
+          name: name
+          description: Name of the model to execute
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: version
+          description: Version of the model to execute
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: owner
+          description: Owner of the model to execute
+          required: false
+          schema:
+            type: string
       responses:
         200:
           description: OK
