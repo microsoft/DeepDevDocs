@@ -66,22 +66,22 @@ paths:
         - Inference
       description: Get the health of model endpoint
       parameters:
-        - in: query
+        - in: path
           name: name
           description: Name of the model to execute
-          required: false
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: version
           description: Version of the model to execute
-          required: false
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: owner
           description: Owner of the model to execute
-          required: false
+          required: true
           schema:
             type: string
       responses:
@@ -94,22 +94,22 @@ paths:
         - Inference
       description: Execute model inference
       parameters:
-        - in: query
+        - in: path
           name: name
           description: Name of the model to execute
-          required: false
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: version
           description: Version of the model to execute
-          required: false
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: owner
           description: Owner of the model to execute
-          required: false
+          required: true
           schema:
             type: string
       requestBody:
