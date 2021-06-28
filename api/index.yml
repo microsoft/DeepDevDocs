@@ -290,6 +290,19 @@ paths:
       tags:
         - Model
       description: Delete all resources associated with the model, including deployments
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to delete
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to delete
+          required: true
+          schema:
+            type: string
       responses:
         200:
           description: OK
@@ -392,6 +405,7 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
 
+  /deployment/{name}/{version}/{owner}:
     get:
       summary: Get deployment
       tags:
@@ -410,9 +424,15 @@ paths:
           required: true
           schema:
             type: string
+        - in: path
+          name: owner
+          description: Owner of the model that is deployed
+          required: true
+          schema:
+            type: string
         - in: query
           name: init_logs
-          description: Whether to return service initialization logs
+          description: Whether to return service initialization logs. Note that only the model owner can retrieve logs
           required: false
           schema:
             type: boolean
