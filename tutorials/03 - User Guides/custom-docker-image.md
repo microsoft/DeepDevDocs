@@ -21,9 +21,9 @@ Custom images must base on Azure Machine Learning's CUDA images, choose the mpi/
 - mcr.microsoft.com/azureml/openmpi3.1.2-cuda10.2-cudnn8-ubuntu18.04
 - mcr.microsoft.com/azureml/openmpi4.1.0-cuda11.0.3-cudnn8-ubuntu18.04
 
-NOTE: Make sure conda's path is still in `PATH` environment variable for `/bin/sh` shell after your own commits. Or model deployment can fail.
+NOTE: Make sure conda's path `/opt/miniconda/bin` is still in `PATH` environment variable for `/bin/sh` shell after your own commits if you modified it. Or model deployment can fail.
 
-After the image is ready, it needs to be uploaded to an publicly available docker registry. [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/) or [Docker Hub](https://hub.docker.com/) is recommended.
+After the image is ready, it needs to be uploaded to a docker registry. [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/) or [Docker Hub](https://hub.docker.com/) is recommended.
 
 ## Register Model
 
