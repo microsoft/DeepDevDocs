@@ -22,6 +22,7 @@ Custom images must base on Azure Machine Learning's CUDA images, choose the mpi/
 - mcr.microsoft.com/azureml/openmpi4.1.0-cuda11.0.3-cudnn8-ubuntu18.04
 
 NOTE: Make sure conda's path `/opt/miniconda/bin` is still in `PATH` environment variable for `/bin/sh` shell after your own commits if you modified it. Or model deployment can fail.
+Be sure to validate your image before submitting to DeepDev by running it locally: `docker run <image_name> /bin/sh -c 'conda --version'`. You are supposed to see output like "conda 4.5.11".
 
 After the image is ready, it needs to be uploaded to a docker registry. [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/) or [Docker Hub](https://hub.docker.com/) is recommended.
 
