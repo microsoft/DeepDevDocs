@@ -20,29 +20,29 @@ tags:
   - name: Training
     description: Model training management APIs
 paths:
-  /inference/{name}/{version}/{owner}/swagger:
+  /inference/{name}/{version}/{owner}/swagger.json:
     get:
       summary: Model inference swagger JSON schema
       tags:
         - Inference
       description: Get Swagger JSON schema for model inference endpoint
       parameters:
-        - in: query
+        - in: path
           name: name
-          description: Name of the model to execute
-          required: false
+          description: Name of the model
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: version
-          description: Version of the model to execute
-          required: false
+          description: Version of the model
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: owner
-          description: Owner of the model to execute
-          required: false
+          description: Owner of the model
+          required: true
           schema:
             type: string
       responses:

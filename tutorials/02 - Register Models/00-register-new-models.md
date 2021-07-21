@@ -3,9 +3,9 @@ title: Register new model
 description: Register new pretrained model
 ---
 
-# How to register
+# Register new model
 
-Registering a new model can be done through the model_registration endpoint (`PUT /api/v1.0/model/{name}/{version}`).
+Registering a new model can be done through the model_registration endpoint (`PUT https://deepdev-api.microsoft.com/api/v1.0/model/{name}/{version}`).
 
 ## Prerequisites
 
