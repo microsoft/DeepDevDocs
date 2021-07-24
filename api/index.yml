@@ -130,22 +130,22 @@ paths:
         - Model
       description: Get the index markdown file for a model
       parameters:
-        - in: query
+        - in: path
           name: name
-          description: Filter all models with the given name
-          required: false
+          description: Name of the model
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: version
-          description: Filter all models with the given version
-          required: false
+          description: Version of the model
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: owner
-          description: Filter all models with the given owner name
-          required: false
+          description: Owner of the model
+          required: true
           schema:
             type: string
       responses:
@@ -511,6 +511,12 @@ paths:
         - in: path
           name: version
           description: Version of the model to register
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: owner
+          description: Owner of the model to register
           required: true
           schema:
             type: string
