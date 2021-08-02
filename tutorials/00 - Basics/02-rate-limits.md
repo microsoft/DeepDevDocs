@@ -4,9 +4,9 @@ title: Request rate limits
 
 # Request rate limits
 
-During private preview, requests sent to Microsoft DeepDev API are rate limited based on your API key.
+Requests sent to Microsoft DeepDev API are rate limited based on your API key.
 
-The exact rates are as follows
+During private preview, the rate limits are as follows
 
 | Time frame | Limit |
 | ---------- | ----- |
