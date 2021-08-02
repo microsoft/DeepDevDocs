@@ -10,7 +10,7 @@ To do so, add the package [`inference_schema`](https://pypi.org/project/inferenc
 
 `inference_schema` offers two decorators `input_schema` and `output_schema`. It also offers three kinds of sample data wrapper classes. `StandardPythonParameterType` is the most commonly used one among them.
 
-> NOTE: DeepDev follows the same way as Azure Machine Learning to compose the input and output schema. For more information, refer to [Azure Machine Learning's documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-advanced-entry-script#automatically-generate-a-swagger-schema).
+> NOTE: Microsoft DeepDev follows the same convention as Azure Machine Learning for composing the input and output schema. For more information, please refer to [Azure Machine Learning's documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-advanced-entry-script#automatically-generate-a-swagger-schema).
 
 ## Inputs
 

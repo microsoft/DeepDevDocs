@@ -4,7 +4,7 @@ title: Model inference script
 
 # How to author model inference script
 
-The inference script is where you tell DeepDev how to load your model, read the user input and get the results returned by the model.
+The inference script is where you tell Microsoft DeepDev how to load your model, read the user input and get the results returned by the model.
 
 An entry is a python module which can be loaded and imported by other python script.
 
@@ -54,7 +54,7 @@ def run(some_input, extra_arg1='default value'):
     return output
 ```
 
-> **NOTE: It is highly recomended to define an OpenAPI schema for your run function by providing examples. For more information on how to define a schema through examples, see [Define Inference Schema](/User%20Guides/define-inference-schema)**
+> **NOTE: It is highly recomended to define an OpenAPI schema for your run function by providing examples. For more information on how to define a schema through examples, see [Define Inference Schema](/docs/User%20Guides/define-inference-schema)**
 
 ## Testing your script locally
 
