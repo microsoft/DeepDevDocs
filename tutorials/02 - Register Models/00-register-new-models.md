@@ -5,7 +5,9 @@ description: Register new pretrained model
 
 # Register new model
 
-Registering a new model can be done through the model_registration endpoint (`PUT https://deepdev-api.microsoft.com/api/v1.0/model/{name}/{version}`).
+Registering a new model can be done through the model_registration endpoint (`PUT https://deepdev-api.microsoft.com/api/v1.0/model/{name}/{version}`). By default, the registered model is private, which means only you can see it. You can also declare it as public while registration so that everyone can see your model. View [Request](#request) section for more information.
+
+NOTE: Private models can not be seen by other users, but they still can be deployed. And the deployed model APIs are available universally. You may consider the inference APIs of private models as available but no one knows where to access.
 
 ## Prerequisites
 
@@ -57,11 +59,15 @@ To register a model, you will need to provide the following metadata:
 
 ## Request
 
+### PUT
+
 To register a model, send a `PUT` request to `/api/v1.0/model/{name}/{version}`.
 
 For full specifications on the request body. Please refer to our OpenAPI schema under the **API** tab.
 
 The request body should be JSON-formatted and must contain at least a `model_config` section, a `model_files` section and a `model_metainfo` section.
+
+`model_files` section contains base information of the model, such as model name, version, owner and whether the model is private or not. Set `model_files.is_private` to `false` if you would like your model to be public once registered.
 
 All file references in `model_config`, such as inference entry script or conda YAML file, need to point to the local file names (i.e. the keys in `model_files`).
 
@@ -70,3 +76,17 @@ During registration, the files will be copied to a private storage account under
 Note that the URLs in `model_files` must be directly accessible, without additional authentication. Therefore, for private Azure Storage accounts, a SAS token with READ permission must be included for authorization.
 
 `model_metainfo` section contains description of the model to make it easily consumable by others. For full specification, please refer to the API schema page.
+
+### PATCH
+
+To change a model's publicity, send a `PATCH` request to `/api/v1.0/model/{name}/{version}`.
+
+Currently only `model_config.is_private` is allowed to be changed. Other properties sent with `PATCH` method will be ignored. Thus an effective request body may seems like:
+
+``` JSON
+{
+   "model_config": {
+      "is_private": false
+   }
+}
+```

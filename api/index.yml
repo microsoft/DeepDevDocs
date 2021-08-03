@@ -285,6 +285,56 @@ paths:
             application/json:
               schema:
                 $ref: ./schemas/error_response.yml
+    patch:
+      summary: Change model's private status.
+      tags:
+        - Model
+      description: Update a model's privacy to control whether everyone can see it.
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to modify
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to modify
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Currently only model's privacy is allowed to be updated. So the request body should only contain this info.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model_config:
+                  type: object
+                  properties:
+                    is_private:
+                      type: boolean
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        404:
+          description: Model not registered
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        400:
+          description: Request data incorrect
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
     delete:
       summary: Delete model
       tags:
