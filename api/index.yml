@@ -305,7 +305,7 @@ paths:
             type: string
       requestBody:
         required: true
-        description: Currently only model's privacy is allowed to be updated. So the request body should only contain this info.
+        description: Only model's privacy is allowed to be updated. So the request body should only contain this info.
         content:
           application/json:
             schema:
