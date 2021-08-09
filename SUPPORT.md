@@ -10,4 +10,4 @@ For help and questions about using this project, please Create an issue with tag
 
 ## Microsoft Support Policy
 
-Support for **DeepDev** is limited to the resources listed above.
+Support for **Microsoft DeepDev** is limited to the resources listed above.

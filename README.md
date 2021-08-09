@@ -1,6 +1,6 @@
-# DeepDev
+# Microsoft DeepDev
 
-DeepDev is a platform solution that allows researchers and engineers alike to
+Microsoft DeepDev is a platform solution that offers an interconnected system of microservices, tools, and pre-trained deep learning models to provide state-of-the-art AI capabilities targeted at software engineering tasks.
 
 ## Contributing
 

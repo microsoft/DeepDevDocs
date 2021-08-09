@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: DeepDev
+  title: Microsoft DeepDev
   version: Preview
 servers:
   - url: https://deepdev-api.microsoft.com/api/v1.0
@@ -163,7 +163,7 @@ paths:
       summary: List models
       tags:
         - Model
-      description: List all models available publicly on DeepDev
+      description: List all models available publicly on Microsoft DeepDev
       parameters:
         - in: query
           name: name
@@ -252,7 +252,7 @@ paths:
       summary: Register model
       tags:
         - Model
-      description: Register a model on the DeepDev
+      description: Register a model on the Microsoft DeepDev
       parameters:
         - in: path
           name: name
