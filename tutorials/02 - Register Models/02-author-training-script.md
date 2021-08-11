@@ -1,5 +1,6 @@
 ---
 title: Model training script
+tags: MicrosoftOnly
 ---
 
 # How to author model training script

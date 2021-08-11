@@ -500,7 +500,7 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
 
-  /model/clone/{name}/{version}/{owner}:
+  /model/clone/{name}/{version}:
     put:
       summary: Clone model
       tags:

@@ -13,12 +13,6 @@ You can discover the library of Microsoft DeepDev models through the website. Si
 
 ### Using the API
 
-To list the models on the catalog, call the list models API at `https://deepdev-api.microsoft.com/api/v1.0/models` by sending a `GET` request.
+To list the models on the catalog, send a `GET` request to the list models API at `https://deepdev-api.microsoft.com/api/v1.0/models`.
 
-The request will return the list of models on the Microsoft DeepDev platform.
-
-## Get model detail
-
-### On Microsoft DeepDev website
-
-On our website, you can see the model details by clicking on the models in the library.
+The request will return the list of models on the Microsoft DeepDev platform in JSON format. Each model will include their name, version and owner information, as well as additional model type and architecture information.

@@ -1,5 +1,6 @@
 ---
 title: Display Organization
+tags: MicrosoftOnly
 ---
 
 # Associating models with GitHub organization
