@@ -1,5 +1,6 @@
 ---
 title: Update existing model
+tags: MicrosoftOnly
 ---
 
 # Update existing model
@@ -12,7 +13,7 @@ To change a model's visibility, send a `PATCH` request to `/api/v1.0/model/{name
 
 Only `model_config.is_private` is allowed to be sent. Other properties sent with `PATCH` method will be ignored. Thus an effective request body may seems like:
 
-``` JSON
+```JSON
 {
    "model_config": {
       "is_private": false

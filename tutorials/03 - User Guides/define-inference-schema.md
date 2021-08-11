@@ -1,5 +1,6 @@
 ---
 title: Model inference schema
+tags: MicrosoftOnly
 ---
 
 # How to define model inference schema

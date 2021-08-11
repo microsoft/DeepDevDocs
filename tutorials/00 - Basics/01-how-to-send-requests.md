@@ -6,7 +6,7 @@ title: Sending requests
 
 There are multiple methods for accessing the Microsoft DeepDev API. In this guide, we will show some of the most common methods.
 
-## Authentcation
+## Authentication
 
 Authentication is done using the `Authorization` HTTP header and the value must be `Bearer <API key>`. For more information on how to get your API key, see [Generate API key](/docs/Basics/generate-api-key).
 
@@ -48,8 +48,12 @@ The full URL path can be composed from the server base path `https://deepdev-api
 
 ### Endpoint path parameters
 
-As our API follows the RESTful design, most endpoints accept path parameters.
+As our API follows the RESTful design, most endpoints accept path parameters. Make sure to include those in your request URL.
 
 ### Using the API endpoints
 
 Now that you are authenticated, you can access the API endpoints. For each endpoint, after filling out the appropriate parameters you can send the request by pressing the `TRY` button at the bottom of the expanded endpoint container.
+
+## Getting model info
+
+### Model name

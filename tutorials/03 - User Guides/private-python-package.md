@@ -1,5 +1,6 @@
 ---
 title: Private python packages
+tags: MicrosoftOnly
 ---
 
 # How to use private python packages
@@ -14,7 +15,7 @@ Private package files are recommended to be put in Azure Blob Storage to pass to
 
 Here is an example for payload uploading three private packages when registering the model:
 
-``` JSON
+```JSON
 {
     "model_config": { ... },
     "private_packages": [
