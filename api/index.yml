@@ -130,22 +130,22 @@ paths:
         - Model
       description: Get the index markdown file for a model
       parameters:
-        - in: query
+        - in: path
           name: name
-          description: Filter all models with the given name
-          required: false
+          description: Name of the model
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: version
-          description: Filter all models with the given version
-          required: false
+          description: Version of the model
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: owner
-          description: Filter all models with the given owner name
-          required: false
+          description: Owner of the model
+          required: true
           schema:
             type: string
       responses:
@@ -282,6 +282,56 @@ paths:
                 $ref: ./schemas/message_response.yml
         409:
           description: Already registered
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+    patch:
+      summary: Change model's private status.
+      tags:
+        - Model
+      description: Update a model's privacy to control whether everyone can see it.
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to modify
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to modify
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Only model's privacy is allowed to be updated. So the request body should only contain this info.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model_config:
+                  type: object
+                  properties:
+                    is_private:
+                      type: boolean
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        404:
+          description: Model not registered
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        400:
+          description: Request data incorrect
           content:
             application/json:
               schema:
@@ -517,6 +567,12 @@ paths:
         - in: path
           name: version
           description: Version of the model to register
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: owner
+          description: Owner of the model to register
           required: true
           schema:
             type: string
