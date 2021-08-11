@@ -252,6 +252,7 @@ paths:
       summary: Register model
       tags:
         - Model
+        - MicrosoftOnly
       description: Register a model on the Microsoft DeepDev
       parameters:
         - in: path
@@ -289,6 +290,7 @@ paths:
       summary: Delete model
       tags:
         - Model
+        - MicrosoftOnly
       description: Delete all resources associated with the model, including deployments
       parameters:
         - in: path
@@ -328,6 +330,7 @@ paths:
       summary: Delete deployment
       tags:
         - Deployment
+        - MicrosoftOnly
       description: Delete an existing mode deployment
       parameters:
         - in: path
@@ -365,6 +368,7 @@ paths:
       summary: Create deployment
       tags:
         - Deployment
+        - MicrosoftOnly
       description: Create a deployment for a model
       parameters:
         - in: path
@@ -461,6 +465,7 @@ paths:
       summary: Get registration status
       tags:
         - Model
+        - MicrosoftOnly
       description: Get the status for a model registration
       parameters:
         - in: path
@@ -500,6 +505,7 @@ paths:
       summary: Clone model
       tags:
         - Model
+        - MicrosoftOnly
       description: Clone a model from an existing model
       parameters:
         - in: path
