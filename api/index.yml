@@ -488,11 +488,11 @@ paths:
           schema:
             type: string
         - in: query
-          name: init_logs
-          description: Whether to return service initialization logs. Note that only the model owner can retrieve logs
+          name: log_lines
+          description: Number of lines of model execution logs to return. Note that only the model owner can retrieve logs.
           required: false
           schema:
-            type: boolean
+            type: integer
       responses:
         200:
           description: OK
