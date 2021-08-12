@@ -10,6 +10,7 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
+
 tags:
   - name: Model
     description: Model management APIs
@@ -19,6 +20,7 @@ tags:
     description: Model deployment management APIs
   - name: Training
     description: Model training management APIs
+
 paths:
   /inference/{name}/{version}/{owner}/swagger.json:
     get:
@@ -252,7 +254,7 @@ paths:
       summary: Register model
       tags:
         - Model
-        - MicrosoftOnly
+      microsoftOnly: true
       description: Register a model on the Microsoft DeepDev
       parameters:
         - in: path
@@ -290,6 +292,7 @@ paths:
       summary: Change model's private status.
       tags:
         - Model
+      microsoftOnly: true
       description: Update a model's privacy to control whether everyone can see it.
       parameters:
         - in: path
@@ -340,7 +343,7 @@ paths:
       summary: Delete model
       tags:
         - Model
-        - MicrosoftOnly
+      microsoftOnly: true
       description: Delete all resources associated with the model, including deployments
       parameters:
         - in: path
@@ -380,7 +383,7 @@ paths:
       summary: Delete deployment
       tags:
         - Deployment
-        - MicrosoftOnly
+      microsoftOnly: true
       description: Delete an existing mode deployment
       parameters:
         - in: path
@@ -418,7 +421,7 @@ paths:
       summary: Create deployment
       tags:
         - Deployment
-        - MicrosoftOnly
+      microsoftOnly: true
       description: Create a deployment for a model
       parameters:
         - in: path
@@ -515,7 +518,7 @@ paths:
       summary: Get registration status
       tags:
         - Model
-        - MicrosoftOnly
+      microsoftOnly: true
       description: Get the status for a model registration
       parameters:
         - in: path
@@ -555,7 +558,7 @@ paths:
       summary: Clone model
       tags:
         - Model
-        - MicrosoftOnly
+      microsoftOnly: true
       description: Clone a model from an existing model
       parameters:
         - in: path
@@ -567,12 +570,6 @@ paths:
         - in: path
           name: version
           description: Version of the model to register
-          required: true
-          schema:
-            type: string
-        - in: path
-          name: owner
-          description: Owner of the model to register
           required: true
           schema:
             type: string
