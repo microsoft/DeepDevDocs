@@ -11,12 +11,12 @@ When a model is registered, it's private by default unless you declare it as pub
 
 To change a model's visibility, send a `PATCH` request to `/api/v1.0/model/{name}/{version}`.
 
-Only `model_config.is_private` is allowed to be sent. Other properties sent with `PATCH` method will be ignored. Thus an effective request body may seems like:
+Only `model_config.private` is allowed to be sent. Other properties sent with `PATCH` method will be ignored. Thus an effective request body may seems like:
 
 ```JSON
 {
    "model_config": {
-      "is_private": false
+      "private": false
    }
 }
 ```

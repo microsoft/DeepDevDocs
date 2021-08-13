@@ -318,7 +318,7 @@ paths:
                 model_config:
                   type: object
                   properties:
-                    is_private:
+                    private:
                       type: boolean
       responses:
         200:
