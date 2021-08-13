@@ -66,7 +66,7 @@ For full specifications on the request body. Please refer to our OpenAPI schema 
 
 The request body should be JSON-formatted and must contain at least a `model_config` section, a `model_files` section and a `model_metainfo` section.
 
-`model_config` section contains base information of the model, such as model name, version, owner and whether the model is private or not. Set `model_config.is_private` to `false` if you would like your model to be public once registered.
+`model_config` section contains base information of the model, such as model name, version, owner and whether the model is private or not. Set `model_config.private` to `false` if you would like your model to be public once registered.
 
 All file references in `model_config`, such as inference entry script or conda YAML file, need to point to the local file names (i.e. the keys in `model_files`).
 
