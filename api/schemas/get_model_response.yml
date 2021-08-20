@@ -38,4 +38,4 @@ properties:
         $ref: ./deployment_state.yml
       url:
         type: string
-        description:
+        description: ""
