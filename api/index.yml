@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: DeepDev
+  title: Microsoft DeepDev
   version: Preview
 servers:
   - url: https://deepdev-api.microsoft.com/api/v1.0
@@ -10,6 +10,7 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
+
 tags:
   - name: Model
     description: Model management APIs
@@ -19,6 +20,7 @@ tags:
     description: Model deployment management APIs
   - name: Training
     description: Model training management APIs
+
 paths:
   /inference/{name}/{version}/{owner}/swagger.json:
     get:
@@ -130,22 +132,22 @@ paths:
         - Model
       description: Get the index markdown file for a model
       parameters:
-        - in: query
+        - in: path
           name: name
-          description: Filter all models with the given name
-          required: false
+          description: Name of the model
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: version
-          description: Filter all models with the given version
-          required: false
+          description: Version of the model
+          required: true
           schema:
             type: string
-        - in: query
+        - in: path
           name: owner
-          description: Filter all models with the given owner name
-          required: false
+          description: Owner of the model
+          required: true
           schema:
             type: string
       responses:
@@ -163,7 +165,7 @@ paths:
       summary: List models
       tags:
         - Model
-      description: List all models available publicly on DeepDev
+      description: List all models available publicly on Microsoft DeepDev
       parameters:
         - in: query
           name: name
@@ -252,7 +254,8 @@ paths:
       summary: Register model
       tags:
         - Model
-      description: Register a model on the DeepDev
+      microsoftOnly: true
+      description: Register a model on the Microsoft DeepDev
       parameters:
         - in: path
           name: name
@@ -285,10 +288,62 @@ paths:
             application/json:
               schema:
                 $ref: ./schemas/error_response.yml
+    patch:
+      summary: Change model's private status.
+      tags:
+        - Model
+      microsoftOnly: true
+      description: Update a model's privacy to control whether everyone can see it.
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to modify
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to modify
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Only model's privacy is allowed to be updated. So the request body should only contain this info.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model_config:
+                  type: object
+                  properties:
+                    private:
+                      type: boolean
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        404:
+          description: Model not registered
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        400:
+          description: Request data incorrect
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
     delete:
       summary: Delete model
       tags:
         - Model
+      microsoftOnly: true
       description: Delete all resources associated with the model, including deployments
       parameters:
         - in: path
@@ -328,6 +383,7 @@ paths:
       summary: Delete deployment
       tags:
         - Deployment
+      microsoftOnly: true
       description: Delete an existing mode deployment
       parameters:
         - in: path
@@ -365,6 +421,7 @@ paths:
       summary: Create deployment
       tags:
         - Deployment
+      microsoftOnly: true
       description: Create a deployment for a model
       parameters:
         - in: path
@@ -431,11 +488,11 @@ paths:
           schema:
             type: string
         - in: query
-          name: init_logs
-          description: Whether to return service initialization logs. Note that only the model owner can retrieve logs
+          name: log_lines
+          description: Number of lines of model execution logs to return. Note that only the model owner can retrieve logs.
           required: false
           schema:
-            type: boolean
+            type: integer
       responses:
         200:
           description: OK
@@ -461,6 +518,7 @@ paths:
       summary: Get registration status
       tags:
         - Model
+      microsoftOnly: true
       description: Get the status for a model registration
       parameters:
         - in: path
@@ -495,11 +553,12 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
 
-  /model/clone/{name}/{version}/{owner}:
+  /model/clone/{name}/{version}:
     put:
       summary: Clone model
       tags:
         - Model
+      microsoftOnly: true
       description: Clone a model from an existing model
       parameters:
         - in: path

@@ -4,34 +4,56 @@ title: Sending requests
 
 # Accessing the API
 
-## Using Postman
+There are multiple methods for accessing the Microsoft DeepDev API. In this guide, we will show some of the most common methods.
 
-### Authentcation
+## Authentication
 
-Under the `Headers` tab, create a new header with name `Authorization` and value `Bearer <API token>`.
+Authentication is done using the `Authorization` HTTP header and the value must be `Bearer <API key>`. For more information on how to get your API key, see [Generate API key](/docs/Basics/generate-api-key).
+
+### From Postman
+
+Under the `Authorization` tab, select `Bearer Token` as the `Type` and paste your API key into the `Token` text box.
 
 ![](./postman_auth.png)
 
-## Using cUrl
+### From cUrl
 
-### Authentication
+Set the `Authorization` header with the value `Bearer <API key>`
 
-Set the `Authorization` header with the value `Bearer <API token>`, `<API token>` can be found under `Settings` -> `Your API key` on the website.
+Example: `curl -H "Authorization: Bearer <API key>" ...`
 
-`curl -H "Authorization: Bearer <API token>" ...`
+### From API playground
 
-## Using the API playground
+After generating an API key, you can access the Microsoft DeepDev API documentation under the `API` tab on the website, which also acts as a playground.
 
-Another way to access the API
+Navigate to the `Authentication` section, and paste the API key into the `HTTP Bearer` field.
 
-### Authentication
+Then, click the `SET` button to ensure that the API key is used for subsequent API operations.
 
-After generating an API key, you will now be able to access the DeepDev API playground which is accessible from the `API` left navbar item in the DeepDev website.
+### From Python code
 
-Navigate to the `Authentication` section in the left sidebar, and paste the API key into the `HTTP Bearer` field.
+Set the `Authorization` header with `Bearer <API key>` in your HTTP request
 
-Finally, click the `SET` button to ensure that the API key is used for subsequent API operations.
+Example with `requests` library:
+
+```python
+import requests
+
+requests.get("https://deepdev-api.microsoft.com/api/v1.0/models", headers={"Authorization": "Bearer <API key>"})
+```
+
+## Determining endpoint URL
+
+The full URL path can be composed from the server base path `https://deepdev-api.microsoft.com/api/v1.0` and the endpoint route, seen in the title of every endpoint on the API documentation page.
+
+### Endpoint path parameters
+
+As our API follows the RESTful design, most endpoints accept path parameters. Make sure to include those in your request URL.
 
 ### Using the API endpoints
 
 Now that you are authenticated, you can access the API endpoints. For each endpoint, after filling out the appropriate parameters you can send the request by pressing the `TRY` button at the bottom of the expanded endpoint container.
+
+## Getting model info
+
+### Model name

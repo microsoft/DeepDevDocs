@@ -1,5 +1,6 @@
 ---
 title: Data pre-processing script
+tags: MicrosoftOnly
 ---
 
 # How to author data pre-processing script
@@ -29,7 +30,7 @@ raw-data-directory
     └─ enwik9.zip
 ```
 
-To tell the users how to prepare for the raw data, you need to compose a markdown file telling them about the structure you want for the raw data directory. DeepDev will host that markdown file as a web page introducing to users.
+To tell the users how to prepare for the raw data, you need to compose a markdown file telling them about the structure you want for the raw data directory. Microsoft DeepDev will host that markdown file as a web page introducing to users.
 
 This function should implement tasks that need to be done before processing, like decompressing archived files. The return value of this function must be a dict which maps the data file paths that needs to be processed to the paths of output files. This is important because files not listed as key of the dictionary will be just ignored during processing.
 
@@ -57,7 +58,7 @@ Important: The function must be named `init`, but the argument can have any name
 
 ### `run` function
 
-`run` function is the one actually executed during data processing. This function is called for each line in each data file. So you just need to define how to process a single line of data and DeepDev will handle the parallel computation & management for you. It accepts two parameters `data_line` and `file`.
+`run` function is the one actually executed during data processing. This function is called for each line in each data file. So you just need to define how to process a single line of data and Microsoft DeepDev will handle the parallel computation & management for you. It accepts two parameters `data_line` and `file`.
 
 `data_line` represents for a single line of the data file. `run` function should transform the line into what it should be and return that.
 
@@ -80,7 +81,7 @@ def run(data_line: str, file: str) -> str:
     return _to_hex_repr(data_line.rstrip("\r\n"))
 ```
 
-DeepDev allows a processing time of **2** seconds per line, or a timeout error will be raised. And if `run` function fails and throws an exception during runtime, the whole pre-processing job will fail and the error message will be logged.
+Microsoft DeepDev allows a processing time of **2** seconds per line, or a timeout error will be raised. And if `run` function fails and throws an exception during runtime, the whole pre-processing job will fail and the error message will be logged.
 
 If you want to ignore some data lines, just return `None` there and this line will be ignored from output file.
 

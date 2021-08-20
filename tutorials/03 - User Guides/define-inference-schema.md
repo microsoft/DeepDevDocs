@@ -1,5 +1,6 @@
 ---
 title: Model inference schema
+tags: MicrosoftOnly
 ---
 
 # How to define model inference schema
@@ -10,13 +11,23 @@ To do so, add the package [`inference_schema`](https://pypi.org/project/inferenc
 
 `inference_schema` offers two decorators `input_schema` and `output_schema`. It also offers three kinds of sample data wrapper classes. `StandardPythonParameterType` is the most commonly used one among them.
 
-> NOTE: DeepDev follows the same way as Azure Machine Learning to compose the input and output schema. For more information, refer to [Azure Machine Learning's documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-advanced-entry-script#automatically-generate-a-swagger-schema).
+> NOTE: Microsoft DeepDev follows the same convention as Azure Machine Learning for composing the input and output schema. For more information, please refer to [Azure Machine Learning's documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-advanced-entry-script#automatically-generate-a-swagger-schema).
 
-## Inputs
+## `input_schema`
 
-For most scenarios, you can define
+`input_schema` decorator accepts two positional parameters, the first one is parameter name, whose value should be exactly the same as `run` function's parameter name. The second one should be an sample value wrapped by `StandardPythonParameterType`.
 
-Here is an example for `run` function:
+Use multiple `input_schema` decorators if your `run` function has multiple parameters.
+
+If you want to make any parameter optional, give it a default value in `run` function and pass in `convert_to_provided_type=False` to its `input_schema` decorator.
+
+## `output_schema`
+
+Unlike `input_schema`, one `run` function can only have one `output_schema` decorator. It only accepts one parameter which is the sample output of your inference API. The sample value should also be wrapped by `StandardPythonParameterType`.
+
+## Example
+
+Here is an example for `run` function with both input and output schema defined:
 
 ```python
 from inference_schema.schema_decorators import input_schema, output_schema

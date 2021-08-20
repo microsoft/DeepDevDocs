@@ -54,6 +54,9 @@ properties:
             $ref: ./docker_registry.yml
         required:
           - entry_script
+      private:
+        type: boolean
+        description: Indicate whether the model is private or public. By default the model is private.
     required:
       - type
       - inference_properties
