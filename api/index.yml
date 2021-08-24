@@ -289,11 +289,11 @@ paths:
               schema:
                 $ref: ./schemas/error_response.yml
     patch:
-      summary: Change model's private status.
+      summary: Update model properties
       tags:
         - Model
       microsoftOnly: true
-      description: Update a model's privacy to control whether everyone can see it.
+      description: Update model properties
       parameters:
         - in: path
           name: name
@@ -309,7 +309,7 @@ paths:
             type: string
       requestBody:
         required: true
-        description: Only model's privacy is allowed to be updated. So the request body should only contain this info.
+        description: Only visibility is currently allowed to be updated. So the request body should only contain this info.
         content:
           application/json:
             schema:
