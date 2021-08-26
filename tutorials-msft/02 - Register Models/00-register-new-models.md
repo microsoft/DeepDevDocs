@@ -6,13 +6,15 @@ tags: MicrosoftOnly
 
 # Register new model
 
-Registering a new model can be done through the model_registration endpoint (`PUT https://deepdev-api.microsoft.com/api/v1.0/model/{name}/{version}`). By default, the registered model is private, which means only you can see it. You can also declare it as public while registration or change its visibility after registered, so that everyone can see your model. View [Request](#request) section and [Update existing model](../03%20-%20User%20Guides/update-existing-model.md) for more information.
+Registering a new model can be done through the model_registration endpoint (`PUT https://deepdev-api.microsoft.com/api/v1.0/model/{name}/{version}`).
 
-NOTE: Private models can not be seen by other users, but they still can be deployed. And the deployed model APIs are available universally. You may consider the inference APIs of private models as available but no one knows where to access.
+By default, the registered model is private, which means only you can see it. You can declare it as public during registration or change its visibility after it's registered, so that everyone can see your model. See [Request](#request) section and [Update existing model](../03%20-%20User%20Guides/update-existing-model.md) for more information.
+
+NOTE: Private models can not be seen by other users, but they still can be deployed. The deployed model APIs are available to the public internet. You may consider the inference APIs of private models as available but unlisted.
 
 ## Prerequisites
 
-- A trained transformer model, with associated model files
+- A trained deep learning model, with associated model files
 - An inference script and an inference environment definition
 
 ## Files

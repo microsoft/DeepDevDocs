@@ -92,7 +92,19 @@ if __name__ == '__main__':
 
 Inference environment must be defined as a conda YAML file. It should define the python environment needed to execute the inference script.
 
-In addition, you also need to have the `azureml-defaults>=1.0.45` package under the `pip` section for deployment compatibility on Azure ML.
+Here is an example of a simple conda YAML file:
+
+```yaml
+name: mymodel
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip:
+      - deepdev
+      - torch==1.8.0
+      - transformers==3.4.0
+```
 
 ## Testing environment file locally
 
