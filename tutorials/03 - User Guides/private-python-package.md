@@ -1,6 +1,5 @@
 ---
 title: Private python packages
-tags: MicrosoftOnly
 internal: true
 ---
 

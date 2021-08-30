@@ -1,6 +1,5 @@
 ---
 title: Model training script
-tags: MicrosoftOnly
 internal: true
 ---
 

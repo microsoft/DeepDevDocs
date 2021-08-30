@@ -1,6 +1,5 @@
 ---
 title: Model inference script
-tags: MicrosoftOnly
 internal: true
 ---
 

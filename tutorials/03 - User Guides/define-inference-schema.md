@@ -1,6 +1,5 @@
 ---
 title: Model inference schema
-tags: MicrosoftOnly
 internal: true
 ---
 

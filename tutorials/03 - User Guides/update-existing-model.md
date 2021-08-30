@@ -1,6 +1,5 @@
 ---
 title: Update existing model
-tags: MicrosoftOnly
 internal: true
 ---
 
