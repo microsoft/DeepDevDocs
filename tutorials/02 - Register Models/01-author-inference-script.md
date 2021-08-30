@@ -1,6 +1,7 @@
 ---
 title: Model inference script
 tags: MicrosoftOnly
+internal: true
 ---
 
 # How to author model inference script

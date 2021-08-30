@@ -1,6 +1,7 @@
 ---
 title: Model inference schema
 tags: MicrosoftOnly
+internal: true
 ---
 
 # How to define model inference schema
