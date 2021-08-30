@@ -1,6 +1,5 @@
 ---
 title: Display Organization
-tags: MicrosoftOnly
 internal: true
 ---
 

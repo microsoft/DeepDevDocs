@@ -1,6 +1,5 @@
 ---
 title: Change CUDA version
-tags: MicrosoftOnly
 internal: true
 ---
 
