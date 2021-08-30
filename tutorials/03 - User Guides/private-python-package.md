@@ -1,6 +1,7 @@
 ---
 title: Private python packages
 tags: MicrosoftOnly
+internal: true
 ---
 
 # How to use private python packages

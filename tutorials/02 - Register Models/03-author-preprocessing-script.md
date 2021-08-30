@@ -1,6 +1,7 @@
 ---
 title: Data pre-processing script
 tags: MicrosoftOnly
+internal: true
 ---
 
 # How to author data pre-processing script
