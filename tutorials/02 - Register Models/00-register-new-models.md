@@ -6,13 +6,15 @@ tags: MicrosoftOnly
 
 # Register new model
 
-Registering a new model can be done through the model_registration endpoint (`PUT https://deepdev-api.microsoft.com/api/v1.0/model/{name}/{version}`). By default, the registered model is private, which means only you can see it. You can also declare it as public while registration or change its visibility after registered, so that everyone can see your model. View [Request](#request) section and [Update existing model](../03%20-%20User%20Guides/update-existing-model.md) for more information.
+Registering a new model can be done through the model_registration endpoint (`PUT https://deepdev-api.microsoft.com/api/v1.0/model/{name}/{version}`).
 
-NOTE: Private models can not be seen by other users, but they still can be deployed. And the deployed model APIs are available universally. You may consider the inference APIs of private models as available but no one knows where to access.
+By default, the registered model is private, which means only you can see it. You can declare it as public during registration or change its visibility after it's registered, so that everyone can see your model. See [Request](#request) section and [Update existing model](../03%20-%20User%20Guides/update-existing-model.md) for more information.
+
+NOTE: Private models can not be seen by other users, but they still can be deployed. The deployed model APIs are available to the public internet. You may consider the inference APIs of private models as available but unlisted.
 
 ## Prerequisites
 
-- A trained transformer model, with associated model files
+- A trained deep learning model, with associated model files
 - An inference script and an inference environment definition
 
 ## Files
@@ -66,7 +68,7 @@ For full specifications on the request body. Please refer to our OpenAPI schema 
 
 The request body should be JSON-formatted and must contain at least a `model_config` section, a `model_files` section and a `model_metainfo` section.
 
-`model_config` section contains base information of the model, such as model name, version, owner and whether the model is private or not. Set `model_config.is_private` to `false` if you would like your model to be public once registered.
+`model_config` section contains base information of the model, such as model name, version, owner and whether the model is private or not. Set `model_config.private` to `false` if you would like your model to be public once registered.
 
 All file references in `model_config`, such as inference entry script or conda YAML file, need to point to the local file names (i.e. the keys in `model_files`).
 

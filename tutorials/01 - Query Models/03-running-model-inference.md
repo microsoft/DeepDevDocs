@@ -1,6 +1,5 @@
 ---
 title: Running model inference
-keywords:
 description: Running model inference
 ---
 

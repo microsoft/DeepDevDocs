@@ -1,6 +1,6 @@
 ---
 title: Use custom Docker images
-tags: MicrosoftOnly
+internal: true
 ---
 
 # Run on custom Docker images

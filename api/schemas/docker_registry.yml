@@ -12,6 +12,6 @@ properties:
   password:
     type: string
     description: Docker registry password
-    password: foo's strong password 123
+    example: foo's strong password 123
 required:
   - url
