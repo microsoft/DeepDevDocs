@@ -13,7 +13,7 @@ For information on how to author the environment YAML file, see [here](#how-to-a
 
 ## Prerequisites
 
-The `deepdev` package is needed. See [package page](https://devdiv.visualstudio.com/InternalTools/_packaging?_a=package&feed=DataScienceTools&package=deepdev-services&protocolType=PyPI) for installation details.
+The `deepdev` package is needed. See [package page](https://devdiv.visualstudio.com/OnlineServices/_artifacts/feed/DeepDev/PyPI/deepdev/1.4.0/overview) for installation details.
 
 ## Structure
 
