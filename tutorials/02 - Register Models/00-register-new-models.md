@@ -6,6 +6,8 @@ tags: MicrosoftOnly
 
 # Register new model
 
+_NOTE: During private preview, only people under `microsoft` organization are able to register new models._
+
 Registering a new model can be done through the model_registration endpoint (`PUT https://deepdev-api.microsoft.com/api/v1.0/model/{name}/{version}`).
 
 By default, the registered model is private, which means only you can see it. You can declare it as public during registration or change its visibility after it's registered, so that everyone can see your model. See [Request](#request) section and [Update existing model](../03%20-%20User%20Guides/update-existing-model.md) for more information.
