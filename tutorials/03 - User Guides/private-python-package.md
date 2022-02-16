@@ -3,7 +3,7 @@ title: Private python packages
 internal: true
 ---
 
-# How to use private python packages
+# Use private python packages
 
 Models may depend on third party python packages to do inference. Including packages which are not intent to be public. Microsoft DeepDev allows model owners to use private packages. These packages should be uploaded at the same time when registering the model.
 

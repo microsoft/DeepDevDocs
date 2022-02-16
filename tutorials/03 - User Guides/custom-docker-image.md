@@ -3,7 +3,7 @@ title: Use custom Docker images
 internal: true
 ---
 
-# How to run on custom Docker images
+# Run on custom Docker images
 
 Microsoft DeepDev offer model inference service with GPU acceleration. By default, inference environment is defined by [conda environment file](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#sharing-an-environment). See [How to author model inference script](../02%20-%20Register%20Models/01-author-inference-script.md#how-to-author-model-inference-environment-file) for more information.
 

@@ -3,7 +3,7 @@ title: Model inference schema
 internal: true
 ---
 
-# How to define model inference schema
+# Define model inference schema
 
 It is strongly recommended to decorate `run` function with input and output samples. So that a swagger file can be automatically generated to tell users how to call the inference api.
 
