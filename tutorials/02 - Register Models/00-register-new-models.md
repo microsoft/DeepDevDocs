@@ -1,7 +1,7 @@
 ---
 title: Register new model
 description: Register new pretrained model
-tags: MicrosoftOnly
+internal: true
 ---
 
 # Register new model
