@@ -1,0 +1,41 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Name of the model
+  version:
+    type: string
+    description: Version of the model
+  owner:
+    type: string
+    description: Owner username of the model
+  organization:
+    type: string
+    description: Organization of the owner of the model
+  type:
+    $ref: ./model_type.yml
+  description:
+    type: string
+    description: English description of the model
+  parent_model:
+    type: object
+    description: Parent model of the current model, if the current model is cloned or trained from an existing model
+    properties:
+      name:
+        type: string
+        description: Name of the parent model
+      version:
+        type: string
+        description: Version of the parent model
+      owner:
+        type: string
+        description: Owner of the parent model
+  deploy_status:
+    type: object
+    description: Model deployment information, if the model is deployed
+    properties:
+      state:
+        $ref: ./deployment_state.yml
+      url:
+        type: string
+        description: ""

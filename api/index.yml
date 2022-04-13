@@ -1,0 +1,609 @@
+openapi: 3.0.2
+info:
+  title: Microsoft DeepDev
+  version: Preview
+servers:
+  - url: https://deepdev-api.microsoft.com/api/v1.0
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+tags:
+  - name: Model
+    description: Model management APIs
+  - name: Inference
+    description: Model inference APIs
+  - name: Deployment
+    description: Model deployment management APIs
+  - name: Training
+    description: Model training management APIs
+
+paths:
+  /inference/{name}/{version}/{owner}/swagger.json:
+    get:
+      summary: Model inference swagger JSON schema
+      tags:
+        - Inference
+      description: Get Swagger JSON schema for model inference endpoint
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: owner
+          description: Owner of the model
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+
+  /inference/{name}/{version}/{owner}:
+    get:
+      summary: Model endpoint health
+      tags:
+        - Inference
+      description: Get the health of model endpoint
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to execute
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to execute
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: owner
+          description: Owner of the model to execute
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+        # TODO
+    post:
+      summary: Execute model inference
+      tags:
+        - Inference
+      description: Execute model inference
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to execute
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to execute
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: owner
+          description: Owner of the model to execute
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: Model output
+        400:
+          description: Model inference error
+  /model/{name}/{version}/{owner}/index:
+    get:
+      summary: Get model page
+      tags:
+        - Model
+      description: Get the index markdown file for a model
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: owner
+          description: Owner of the model
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            text/markdown:
+              schema:
+                type: string
+        204:
+          description: No Content
+
+  /models:
+    get:
+      summary: List models
+      tags:
+        - Model
+      description: List all models available publicly on Microsoft DeepDev
+      parameters:
+        - in: query
+          name: name
+          description: Filter all models with the given name
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: version
+          description: Filter all models with the given version
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: owner
+          description: Filter all models with the given owner name
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: organization
+          description: Filter all models with the given organization
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: trainable
+          description: Filter all models that can be trained
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: type
+          description: Filter all models of the given architecture
+          required: false
+          schema:
+            type: string
+            enum:
+              - ENCODER
+              - DECODER
+              - SEQ2SEQ
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/list_models_response.yml
+
+  /model/{name}/{version}/{owner}:
+    get:
+      summary: Get model
+      tags:
+        - Model
+      description: Get the properties of a model
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: owner
+          description: Owner of the model
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/get_model_response.yml
+
+  /model/{name}/{version}:
+    put:
+      summary: Register model
+      tags:
+        - Model
+      microsoftOnly: true
+      description: Register a model on the Microsoft DeepDev
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to register
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to register
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/add_model_request.yml
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        409:
+          description: Already registered
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+    patch:
+      summary: Update model properties
+      tags:
+        - Model
+      microsoftOnly: true
+      description: Update model properties
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to modify
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to modify
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Only visibility is currently allowed to be updated. So the request body should only contain this info.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model_config:
+                  type: object
+                  properties:
+                    private:
+                      type: boolean
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        404:
+          description: Model not registered
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        400:
+          description: Request data incorrect
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+    delete:
+      summary: Delete model
+      tags:
+        - Model
+      microsoftOnly: true
+      description: Delete all resources associated with the model, including deployments
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to delete
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+
+  /deployment/{name}/{version}:
+    delete:
+      summary: Delete deployment
+      tags:
+        - Deployment
+      microsoftOnly: true
+      description: Delete an existing mode deployment
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model that is deployed
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model that is deployed
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+    put:
+      summary: Create deployment
+      tags:
+        - Deployment
+      microsoftOnly: true
+      description: Create a deployment for a model
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to be deployed
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to be deployed
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        409:
+          description: Already deployed
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+
+  /deployment/{name}/{version}/{owner}:
+    get:
+      summary: Get deployment
+      tags:
+        - Deployment
+      description: Get the status of a model deployment
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model that is deployed
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model that is deployed
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: owner
+          description: Owner of the model that is deployed
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: log_lines
+          description: Number of lines of model execution logs to return. Note that only the model owner can retrieve logs.
+          required: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+
+  /model/{name}/{version}/status:
+    get:
+      summary: Get registration status
+      tags:
+        - Model
+      microsoftOnly: true
+      description: Get the status for a model registration
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/add_model_status_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+
+  /model/clone/{name}/{version}:
+    put:
+      summary: Clone model
+      tags:
+        - Model
+      microsoftOnly: true
+      description: Clone a model from an existing model
+      parameters:
+        - in: path
+          name: name
+          description: Name of the model to register
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: Version of the model to register
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/clone_model_from_request.yml
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/message_response.yml
+        400:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+        409:
+          description: Already deployed
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/error_response.yml
+
+security:
+  - bearerAuth: []

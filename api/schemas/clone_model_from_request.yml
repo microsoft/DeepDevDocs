@@ -1,0 +1,107 @@
+type: object
+properties:
+  parent_version:
+    type: string
+    description: Version of the parent model to clone from
+  parent_owner:
+    type: string
+    description: Owner of the parent model to clone from
+  model_files:
+    type: object
+    description: New files to add to the model
+  ignore_files:
+    type: array
+    description: List of files from the original model to ignore
+    items:
+      type: string
+  model_config:
+    type: object
+    properties:
+      type:
+        $ref: ./model_type.yml
+      description:
+        type: string
+        description: English description of the model
+      inference_properties:
+        type: object
+        properties:
+          entry_script:
+            type: string
+            description: Inference entry script
+          conda_env:
+            type: string
+            description: Inference Conda environment YAML file
+          docker_image:
+            type: string
+            description: Docker base image to use. If the image is from a private registry, registry details and credentails can be added in the docker_registry field
+          docker_registry:
+            $ref: ./docker_registry.yml
+      training_properties:
+        type: object
+        properties:
+          entry_script:
+            type: string
+            description: Training entry script
+          args:
+            type: object
+            description: Name of arguments and default values to be passed to the entry script
+          conda_env:
+            type: string
+            description: Training Conda environment YAML file
+          docker_image:
+            type: string
+            description: Docker base image to use. If the image is from a private registry, registry details and credentails can be added in the docker_registry field
+          docker_registry:
+            $ref: ./docker_registry.yml
+  model_metainfo:
+    type: object
+    properties:
+      input_types:
+        type: array
+        items:
+          $ref: ./model_data_type.yml
+        description: List of all types of data that the model can take as input
+      input_languages:
+        type: array
+        items:
+          type: array
+          items:
+            type: string
+          description: List of all languages that the model can take as input
+      input_description:
+        type: string
+        description: Description of model input
+      output_types:
+        type: array
+        items:
+          $ref: ./model_data_type.yml
+        description: List of all types of data that the model can output
+      output_languages:
+        type: array
+        items:
+          type: array
+          items:
+            type: string
+          description: List of all languages that the model can output
+      output_description:
+        type: string
+        description: Description of model output
+      num_params:
+        type: number
+        description: Number of parameters in the model
+      index_page_file:
+        type: string
+        description: Model index page file in markdown, same name as provided in the model_files section
+      images:
+        type: array
+        items:
+          type: string
+        description: List of image file name, provided through the model_files section
+  private_packages:
+    type: array
+    items:
+      type: string
+    description: List of private packages needed by the model, as downloadable URLs from an Azure storage account
+required:
+  - parent_version
+  - parent_owner
