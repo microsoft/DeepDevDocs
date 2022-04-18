@@ -4,7 +4,9 @@ title: Generate API key
 
 # How to generate API key
 
-Once you have been granted access to Microsoft DeepDev Private Preview, you can access your API key from the `Your API key` dropdown item under `Settings` on the top right area of the navigation bar.
+Once you have been granted access to Microsoft DeepDev Private Preview, you can access your API key from the `API key` menu on the top right area of the navigation bar.
+
+![API key location in sidebar](./api_key.png)
 
 Please note that your API key is unique to you and anyone with access to your API key can impersonate you on Microsoft DeepDev.
 
