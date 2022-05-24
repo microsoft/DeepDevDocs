@@ -15,7 +15,7 @@ There are two main methods to perform model inferencing.
 
 - Go into the a model's overview page by clicking on a model in the `Models` tab. Then select the `Inference` link located near the top of the page.
 
-![API key location in sidebar](./model_inference.png)
+![Model Inference link in Model Overview page](./model_inference.png)
 - Using the inference API located in the [API page](https://deepdev.microsoft.com/api#get-/inference/-name-/-version-/-owner-).
 
 
