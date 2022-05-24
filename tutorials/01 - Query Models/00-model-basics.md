@@ -8,8 +8,8 @@ Microsoft DeepDev models are a suite of state-of-the-art language models, encode
 
 In addition to pre-trained, task agnostic models ready to be fine-tuned for any desired task, Microsoft DeepDev contains a library of task-specific models like code completion, unit test generation, function generation, code summarization, merge conflict resolution, and more.
 
-Further, our team of Microsoft DeepDev engineers and scientists are working to continuously expand the repertoire of Microsoft DeepDev model tasks, architectures, and unique performance metrics.
+Further, our team of engineers and scientists are working to continuously expand the repertoire of Microsoft DeepDev model tasks, architectures, and unique performance metrics.
 
 ### Model information
 
-Every model is identified by its name, version and owner name. As you query the models, you will need to provide this information. For more information on how to discover the models, see [Discover Models](/docs/Query%20Models/discover-models)
+Every model is identified by its name, version, and owner name. As you query the models, you will need to provide this information. For more information on how to discover the models, see [Discover Models](/docs/Query%20Models/discover-models)
