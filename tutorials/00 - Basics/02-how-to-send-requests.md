@@ -30,7 +30,7 @@ Navigate to the `Authentication` section, and paste the API key into the `HTTP B
 
 Then, click the `SET` button to ensure that the API key is used for subsequent API operations.
 
-### From Python code
+### Using Python
 
 Set the `Authorization` header with `Bearer <API key>` in your HTTP request
 
@@ -46,6 +46,8 @@ requests.get("https://deepdev-api.microsoft.com/api/v1.0/models", headers={"Auth
 
 The full URL path can be composed from the server base path `https://deepdev-api.microsoft.com/api/v1.0` and the endpoint route, seen in the title of every endpoint on the API documentation page.
 
+Example: `https://deepdev-api.microsoft.com/api/v1.0/model/model_name/model_version` or `https://deepdev-api.microsoft.com/api/v1.0/inference/model_name/model_version/model_owner`.
+
 ### Endpoint path parameters
 
 As our API follows the RESTful design, most endpoints accept path parameters. Make sure to include those in your request URL.
@@ -53,7 +55,3 @@ As our API follows the RESTful design, most endpoints accept path parameters. Ma
 ### Using the API endpoints
 
 Now that you are authenticated, you can access the API endpoints. For each endpoint, after filling out the appropriate parameters you can send the request by pressing the `TRY` button at the bottom of the expanded endpoint container.
-
-## Getting model info
-
-### Model name
